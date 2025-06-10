@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { auth, db } from "../firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
+import { updateProfile } from "firebase/auth";
 
 // 🌟 Styled Components
 const Container = styled.div`
@@ -40,6 +41,7 @@ const Button = styled.button`
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  width:100%;
   &:hover {
     background-color: #45a049;
   }
@@ -66,7 +68,10 @@ const AuthForm = () => {
         // Inscription
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
-
+        
+         await updateProfile(user, {
+            displayName: displayName
+          });
         // Ajouter l'utilisateur dans la collection "users"
         await setDoc(doc(db, "users", user.uid), {
           displayName: displayName,

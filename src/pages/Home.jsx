@@ -1,6 +1,7 @@
 
 import styled from "styled-components";
 import { useState } from "react"
+import { Link } from "react-router-dom";
 import { carrousel } from "../Data";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
@@ -46,6 +47,7 @@ const StyleImg=styled.img`
 const StyleHome=styled.div`
   width:100%;
   height:auto;
+  background-color: #e8f0f8;
 `
 const DisplayHome=styled.div`
   display:flex;
@@ -189,7 +191,9 @@ function Home() {
 
       <div>
         Contact sur les réseaux
+        <Link to="/Mention_legal">Mention Légal</Link>
       </div>
+
 
     </StyleHome>
   );

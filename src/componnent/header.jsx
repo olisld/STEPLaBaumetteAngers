@@ -113,17 +113,22 @@ const StyledLink=styled(Link)`
 `
 
 function Header(){
+
+  // États pour gérer l'affichage du menu déroulant et l'animation du bouton menu
   const [isDropdownVisible, setDropdownVisible] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
+// Hook pour naviguer entre les routes
   const navigate = useNavigate();
+  // Récupération de l'utilisateur connecté via un hook personnalisé
   const user = useAuth(); 
+  // Référence pour détecter les clics en dehors du menu déroulant
   const dropdownRef = useRef(null);
-
+// Fonction pour ouvrir/fermer le menu déroulant au clic
   const toggleDropdown = () => {
     setDropdownVisible((prev) => !prev);
     setIsClicked((prev) => !prev);
   };
-
+// Fonction déclenchée quand l'utilisateur clique en dehors du menu
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
       // Si le clic est en dehors du menu
@@ -131,14 +136,15 @@ function Header(){
       setIsClicked(false);
     }
   };
-
+  
+// Effet pour détecter un clic à l'extérieur du menu et le fermer automatiquement
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
+// Fonction pour déconnecter l'utilisateur
   const handleLogout = async () => {
   try {
     await signOut(auth);
@@ -161,8 +167,8 @@ function Header(){
                     </StyleDIvLogo>
                 </StyleLogo>
                 {user && (
-                  <p style={{ color: "white", marginRight: "20px" }}>
-                    Bienvenue {user.email}
+                  <p style={{ color: "white", marginRight: "20px" ,textAlign:"center"}}>
+                    Bienvenue {user.displayName}
                   </p>
                 )}
                 <div style={{ position: "relative" }} ref={dropdownRef}>

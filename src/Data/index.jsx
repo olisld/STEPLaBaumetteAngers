@@ -29,7 +29,7 @@ export const carrousel =[
     {
         title:'Biogaz',
         id:'3',
-        content:' Idée pour la presentation des paragraphes du carroussel mettre une bulle de bd autour du texte et un personnage ou personne de la stattion disant cette bulle pour plus ludique',
+        content:'Lors du traitement des boues, du biogaz est produit par méthanisation puis récupéré et injecté dans le réseau GRDF pour être valorisé en énergie.',
         asset1:terre,
         asset2:biogaz,
     },

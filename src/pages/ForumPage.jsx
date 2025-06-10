@@ -3,6 +3,7 @@ import { db } from "../firebase";
 import { collection, getDocs, addDoc, serverTimestamp } from "firebase/firestore";
 import useAuth from "../hooks/useAuth";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 // 🌟 Styled Components
 const Container = styled.div`
@@ -168,7 +169,10 @@ const ForumPage = () => {
           {threads.length > 0 ? (
             threads.map(thread => (
               <ThreadItem key={thread.id}>
-                <strong>{thread.title}</strong><br />
+                <Link to={`/thread/${thread.id}`}>
+                  <strong>{thread.title}</strong><br />
+                </Link>
+                
                 <small>Posté par : {thread.author || "Anonyme"}</small>
               </ThreadItem>
             ))

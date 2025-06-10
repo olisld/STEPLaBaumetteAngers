@@ -10,7 +10,8 @@ import Equipe from './pages/Equipe';
 import Chiffres from './pages/Chiffres';
 import ForumPage from './pages/ForumPage';
 import AuthPage from './pages/AuthPage';
-
+import ThreadPage from './pages/ThreadPage';
+import MentionLégal from './pages/MentionLegal';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -22,6 +23,8 @@ root.render(
         <Route path='/chiffres' element={<Chiffres/>}/>
         <Route path='/forumPage' element={<ForumPage/>}/>
         <Route path='/authentification' element={<AuthPage/>}/>
+        <Route path='/thread/:id' element={<ThreadPage/>}/>
+        <Route path='/Mention_legal' element={<MentionLégal/>}/>
       </Routes>
     </Router>
   </React.StrictMode>

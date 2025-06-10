@@ -1,222 +1,144 @@
 import styled from "styled-components";
-// import des tableaux de caractéristique
-import traitementRefus from '../assets/Traitement_des_refus.png'
-import traitementBoues from '../assets/traitement_des_boues.png'
-import productionBiogaz from '../assets/Production_biogaz.png'
-import consoAnnuel  from '../assets/Consomation_annuel.png'
-import caracteristique from '../assets/Caractéristique.png'
-import traitementEaux from '../assets/Traitement_des_eaux.png'
-// import des images des caractéristiques
-import refus from '../assets/RefusImg.jpg'
-import { useState,useRef } from "react";
+import traitementRefus from '../assets/Traitement_des_refus.png';
+import traitementBoues from '../assets/traitement_des_boues.png';
+import productionBiogaz from '../assets/Production_biogaz.png';
+import caracteristique from '../assets/Caractéristique.png';
+import traitementEaux from '../assets/Traitement_des_eaux.png';
 
-const  DivDisplayCenter = styled.div`
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    width:100vw;
-    height:100%;
-`
-const OrganisationDifférentChiffres= styled.div`
-    display:flex;
-    justify-content:space-around;
-    flex-wrap: wrap; /* Permet de revenir à la ligne */
-    gap: 20px; /* Optionnel : Espace entre les éléments */
+import refus from '../assets/RefusImg.jpg';
+import PhotoStep from "../assets/STEP.jpg";
+import ImagesTraitementDesEaux from '../assets/Traitement_des_eaux_images.jpg';
+import BouesEpuration from "../assets/boue-epuration.jpg";
+import PhotoBiogaz from "../assets/imagesBiogaz.jpg";
 
-`
-const DivChiffres =styled.div`
-    background-color:#414141;
-    border-radius:5px;
-    color:white;
-    text-align:center;
-    height:100px;
-    width:410px;
-    transition: transform 0.5s;
-    &:hover{
-        cursor:pointer;
-        transform:scale(1.5);
-    }
-`
-const ImgCaract =styled.img`
-    width:50px;
-    height:50px;
-    border-radius:10px;
+const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #e8f0f8;
+  min-height: 100vh;
+  padding: 60px 20px;
+  font-family: 'Segoe UI', sans-serif;
+`;
 
-`
+const Titre = styled.h1`
+  color: #0f172a;
+  font-size: 2.8rem;
+  margin-bottom: 50px;
+  text-align: center;
+`;
 
-function Chiffres(){
+const CartesContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+`;
 
-    const [selectDiv,setSelectDiv]=useState(null);
-    const divRefs=useRef([]);
-    function handleclick(index){
-        setSelectDiv(index === selectDiv ? null : index);
-        // Si une référence existe, scroller vers la div cliquée
-    if (divRefs.current[index]) {
-        divRefs.current[index].scrollIntoView({
-          behavior: "smooth", // Animation fluide
-          block: "center", // Centre verticalement dans la fenêtre
-          inline: "center", // Centre horizontalement si nécessaire
-        });
-      }
-    }
+const Carte = styled.div`
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 
-    const data = [
-        { title: "Caractéristique de la station", imgSrc: caracteristique,imgDescription:"" },
-        { title: "Traitement des eaux", imgSrc: traitementEaux ,imgDescription:""},
-        { title: "Normes de rejet", imgSrc: "" ,imgDescription:""},
-        { title: "Traitement des refus", imgSrc: traitementRefus,imgDescription:refus},
-        { title: "Traitement des boues", imgSrc: traitementBoues,imgDescription:""},
-        { title: "Production de Biogaz", imgSrc: productionBiogaz,imgDescription:""},
-        { title: "Consommations annuel", imgSrc: consoAnnuel,imgDescription:""},
-    ]
-    return(
-        <DivDisplayCenter>
-            <div><h1>Quelques chiffres</h1></div>
-            
-            <OrganisationDifférentChiffres>
-               {data.map((item,index)=>(
-                    <DivChiffres key={index} ref={(el) => (divRefs.current[index] = el)} onClick={()=>handleclick(index)}>
-                        <h2>{item.title}</h2>
-                        <ImgCaract src={item.imgDescription} alt={item.title} />
-                        {selectDiv === index && item.imgSrc && (        
-                            <img src={item.imgSrc} alt={item.title} />
-                        )}
-                    </DivChiffres>
-                ))}
-            </OrganisationDifférentChiffres>
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+`;
 
-        </DivDisplayCenter>
-    )
+const TitreCarte = styled.h2`
+  font-size: 1.4rem;
+  color: #1e293b;
+  margin-bottom: 20px;
+`;
+
+const ImgIcone = styled.img`
+  width: 80%;
+  height: auto;
+  max-height: 200px;
+  border-radius: 12px;
+  object-fit: cover;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+`;
+
+const Paragraphe = styled.p`
+  font-size: 1.05rem;
+  color: #334155;
+  line-height: 1.6;
+  margin: 10px 0 20px 0;
+`;
+
+const ImgAffichée = styled.img`
+  width: 100%;
+  max-height: 250px;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-top: auto;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+`;
+
+function Chiffres() {
+  const données = [
+    {
+      titre: "Caractéristique de la station",
+      icone: PhotoStep,
+      image: caracteristique,
+      content:
+        "Mise en service en 2009, la station d’épuration de la Baumette à Angers est une installation compacte par biofiltration, conçue pour 285 000 équivalents-habitants.",
+    },
+    {
+      titre: "Traitement des eaux",
+      icone: ImagesTraitementDesEaux,
+      image: traitementEaux,
+      content:
+        "Environ 30 000 m³ d’eau sont traités chaque jour à la Baumette, soit l’équivalent de 12 piscines olympiques remplies quotidiennement, ou de 30 millions de bouteilles d'eau d’un litre.",
+    },
+    {
+      titre: "Traitement des refus",
+      icone: refus,
+      image: traitementRefus,
+      content:
+        "L’eau usée contient des déchets solides, éliminés dès l’entrée de la station grâce à des équipements comme les dégrilleurs et le dessableur, permettant de récupérer les refus et le sable.",
+    },
+    {
+      titre: "Traitement des boues",
+      icone: BouesEpuration,
+      image: traitementBoues,
+      content:
+        "Les boues issues du traitement des eaux sont épaissies, déshydratées puis valorisées en agriculture ou éliminées selon leur qualité.",
+    },
+    {
+      titre: "Production de Biogaz",
+      icone: PhotoBiogaz,
+      image: productionBiogaz,
+      content:
+        "Lors du traitement des boues, du biogaz est produit par méthanisation puis récupéré et injecté dans le réseau GRDF pour être valorisé en énergie.",
+    },
+  ];
+
+  return (
+    <PageContainer>
+      <Titre>Quelques chiffres</Titre>
+      <CartesContainer>
+        {données.map((item, index) => (
+          <Carte key={index}>
+            <TitreCarte>{item.titre}</TitreCarte>
+            <ImgIcone src={item.icone} alt={`Illustration de ${item.titre}`} />
+            <Paragraphe>{item.content}</Paragraphe>
+            <ImgAffichée src={item.image} alt={`Tableau ${item.titre}`} />
+          </Carte>
+        ))}
+      </CartesContainer>
+    </PageContainer>
+  );
 }
+
 export default Chiffres;
-
-// import { useState } from "react";
-// import styled from "styled-components";
-// // import des images
-// import traitementRefus from "../assets/Traitement_des_refus.png";
-// import traitementBoues from "../assets/traitement_des_boues.png";
-// import productionBiogaz from "../assets/Production_biogaz.png";
-// import consoAnnuel from "../assets/Consomation_annuel.png";
-// import caracteristique from "../assets/Caractéristique.png";
-// import traitementEaux from "../assets/Traitement_des_eaux.png";
-
-// const DivDisplayCenter = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   width: 100vw;
-//   height: 100vh;
-//   overflow: hidden; /* Masque le contenu débordant */
-// `;
-
-// const OrganisationDifférentChiffres = styled.div`
-//   display: flex;
-//   justify-content: space-around;
-//   flex-wrap: wrap; /* Permet de revenir à la ligne */
-//   gap: 20px; /* Optionnel : Espace entre les éléments */
-//   ${({ zoom }) =>
-//     zoom &&
-//     `
-//     display: none; /* Masque les autres divs si une div est zoomée */
-//   `}
-// `;
-
-// const DivChiffres = styled.div`
-//   background-color: #414141;
-//   border-radius: 5px;
-//   color: white;
-//   text-align: center;
-//   transition: all 0.5s ease;
-//   cursor: pointer;
-//   width: 200px;
-//   height: 200px;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-
-//   ${({ isZoomed }) =>
-//     isZoomed &&
-//     `
-//     position: fixed;
-//     top: 50%;
-//     left: 50%;
-//     transform: translate(-50%, -50%) scale(2); /* Zoom et centrage */
-//     width: 400px;
-//     height: 400px;
-//     z-index: 10;
-//   `}
-// `;
-
-// const ImgCaract = styled.img`
-//   width: 50px;
-//   height: 50px;
-//   border-radius: 10px;
-
-//   ${({ isZoomed }) =>
-//     isZoomed &&
-//     `
-//     width: 100px;
-//     height: 100px;
-//   `}
-// `;
-
-// function Chiffres() {
-//   const [zoomIndex, setZoomIndex] = useState(null);
-
-//   function handleClick(index) {
-//     setZoomIndex(index === zoomIndex ? null : index); // Permet de sortir du mode zoom
-//   }
-
-//   const data = [
-//     { title: "Caractéristique de la station", imgSrc: caracteristique },
-//     { title: "Traitement des eaux", imgSrc: traitementEaux },
-//     { title: "Normes de rejet", imgSrc: "" },
-//     { title: "Traitement des refus", imgSrc: traitementRefus },
-//     { title: "Traitement des boues", imgSrc: traitementBoues },
-//     { title: "Production de Biogaz", imgSrc: productionBiogaz },
-//     { title: "Consommations annuel", imgSrc: consoAnnuel },
-//   ];
-
-//   return (
-//     <DivDisplayCenter>
-//       <div>
-//         <h1>Quelques chiffres</h1>
-//       </div>
-
-//       <OrganisationDifférentChiffres zoom={zoomIndex !== null}>
-//         {data.map((item, index) => (
-//           <DivChiffres
-//             key={index}
-//             isZoomed={zoomIndex === index}
-//             onClick={() => handleClick(index)}
-//           >
-//             <h2>{item.title}</h2>
-//             <img src={item.imgSrc} alt={item.title} />
-//           </DivChiffres>
-//         ))}
-//       </OrganisationDifférentChiffres>
-
-//       {zoomIndex !== null && (
-//         <button
-//           onClick={() => setZoomIndex(null)}
-//           style={{
-//             position: "fixed",
-//             top: "10px",
-//             right: "10px",
-//             padding: "10px 20px",
-//             backgroundColor: "#fff",
-//             border: "none",
-//             borderRadius: "5px",
-//             cursor: "pointer",
-//             zIndex: 20,
-//           }}
-//         >
-//           Fermer
-//         </button>
-//       )}
-//     </DivDisplayCenter>
-//   );
-// }
-
-// export default Chiffres;
