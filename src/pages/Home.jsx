@@ -125,6 +125,18 @@ const ParentDivNuageDialogue= styled.div`
   z-index:100;
 `
 
+const DivMentionLegal = styled.div`
+  display:flex;
+  justify-content:space-between;
+  padding:10px;
+  align-items:center;
+`
+const ListNoDeco =styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+`
+
 function Home() {
   const [currentSlide,setSlide]=useState(1)
   const [isAnimating, setIsAnimating] = useState(false);
@@ -189,10 +201,17 @@ function Home() {
       </StyleDivFleche>
       
 
-      <div>
-        Contact sur les réseaux
+      <DivMentionLegal>
+        <div>
+          <ListNoDeco>
+            <li>Contact :</li>
+            <li>Tel: 02 41 18 21 21</li>
+            <li>E-mail: contact@anjouloireterritoire.fr</li>
+          </ListNoDeco>
+        </div>
+        
         <Link to="/Mention_legal">Mention Légal</Link>
-      </div>
+      </DivMentionLegal>
 
 
     </StyleHome>

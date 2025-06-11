@@ -15,7 +15,7 @@ const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #e8f0f8;
+  background: linear-gradient(to bottom, #e0f2fe, #f0f9ff);
   min-height: 100vh;
   padding: 60px 20px;
   font-family: 'Segoe UI', sans-serif;
@@ -23,66 +23,68 @@ const PageContainer = styled.div`
 
 const Titre = styled.h1`
   color: #0f172a;
-  font-size: 2.8rem;
-  margin-bottom: 50px;
+  font-size: 3rem;
+  margin-bottom: 40px;
   text-align: center;
+  font-weight: 700;
 `;
 
 const CartesContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
   width: 100%;
-  max-width: 1200px;
+  max-width: 900px;
 `;
 
 const Carte = styled.div`
   background-color: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-  padding: 25px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  padding: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
   }
 `;
 
 const TitreCarte = styled.h2`
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   color: #1e293b;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  text-align: center;
 `;
 
 const ImgIcone = styled.img`
-  width: 80%;
+  width: 100%;
+  max-width: 600px;
   height: auto;
-  max-height: 200px;
-  border-radius: 12px;
+  border-radius: 14px;
   object-fit: cover;
   margin-bottom: 20px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 `;
 
 const Paragraphe = styled.p`
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   color: #334155;
-  line-height: 1.6;
-  margin: 10px 0 20px 0;
+  line-height: 1.7;
+  text-align: justify;
+  margin-bottom: 20px;
 `;
 
 const ImgAffichée = styled.img`
   width: 100%;
-  max-height: 250px;
+  max-width: 700px;
+  height: auto;
+  border-radius: 14px;
   object-fit: contain;
-  border-radius: 10px;
-  margin-top: auto;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
 `;
 
 function Chiffres() {
@@ -133,7 +135,7 @@ function Chiffres() {
             <TitreCarte>{item.titre}</TitreCarte>
             <ImgIcone src={item.icone} alt={`Illustration de ${item.titre}`} />
             <Paragraphe>{item.content}</Paragraphe>
-            <ImgAffichée src={item.image} alt={`Tableau ${item.titre}`} />
+            <ImgAffichée src={item.image} alt={`Données ou graphique ${item.titre}`} />
           </Carte>
         ))}
       </CartesContainer>
